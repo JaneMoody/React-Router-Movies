@@ -1,20 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useRouteMatch, useParams } from "react-router-dom";
 export default function Movie(props) {
   const [movie, setMovie] = useState();
+  const { movies } = props;
+  const { id } = useParams();
+  const { url } = useRouteMatch();
 
-  let id = 1;
+  let Id = url.substring(url.lastIndexOf("/") + 1);
   // Change ^^^ that line and use a hook to obtain the :id parameter from the URL
 
   useEffect(() => {
+    const id = Id;
     axios
       .get(`http://localhost:5000/api/movies/${id}`) // Study this endpoint with Postman
-      .then(response => {
+      .then((response) => {
         // Study this response with a breakpoint or log statements
         // and set the response data as the 'movie' slice of state
+        setMovie(response.data);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
     // This effect should run every time time
@@ -42,7 +47,7 @@ export default function Movie(props) {
         </div>
         <h3>Actors</h3>
 
-        {stars.map(star => (
+        {stars.map((star) => (
           <div key={star} className="movie-star">
             {star}
           </div>

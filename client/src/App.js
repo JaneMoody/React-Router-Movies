@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  useHistory,
+} from "react-router-dom";
+import axios from "axios";
 import Movies from "./Movies/Movie";
 import MovieCard from "./Movies/MovieCard";
 import MovieList from "./Movies/MovieList";

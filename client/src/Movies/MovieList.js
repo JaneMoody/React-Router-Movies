@@ -1,14 +1,25 @@
-import React from 'react';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-export default function MovieList(props) {
+const MovieList = (props) => {
   return (
     <div className="movie-list">
-      {props.movies.map(movie => (
-        <MovieDetails key={movie.id} movie={movie} />
+      {props.movies.map((movie) => (
+        <Link to={`/movies/${movie.id}`}>
+          <MovieDetails key={movie.id} movie={movie} />
+        </Link>
       ))}
     </div>
   );
-}
+};
+// export default function MovieList(props) {
+//   return (
+
+//         <MovieDetails key={movie.id} movie={movie} />
+//       ))}
+//     </div>
+//   );
+// }
 
 function MovieDetails(props) {
   const { title, director, metascore } = props.movie;
@@ -25,3 +36,5 @@ function MovieDetails(props) {
     </div>
   );
 }
+
+export default MovieList;
